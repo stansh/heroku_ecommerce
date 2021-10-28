@@ -37,7 +37,7 @@ app.use(express.static(path.join(__dirname, '/build')));
 app.use(cors());
 
 app.use('/', productsRouter);
-app.use('/users', usersRouter);
+//app.use('/users', usersRouter);
 app.use('/products', productsRouter);
 app.use('/cart', cartRouter);
 app.use('/checkout', checkoutRouter);
