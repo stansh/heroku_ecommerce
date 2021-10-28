@@ -7,7 +7,7 @@ var cors = require('cors');
 const mongoose = require('mongoose');
 const url = 'mongodb://localhost:27017/e_commerce';
 
-mongoose.connect(url, {
+mongoose.connect(process.env.MONGODB_URL || url, {
     useCreateIndex: true,
     useFindAndModify: false,
     useNewUrlParser: true, 
@@ -15,8 +15,8 @@ mongoose.connect(url, {
 });
 
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+//var indexRouter = require('./routes/index');
+//var usersRouter = require('./routes/users');
 var productsRouter = require('./routes/products');
 var cartRouter = require('./routes/cart');
 var checkoutRouter = require('./routes/checkout');
@@ -33,10 +33,10 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '/build')));
 app.use(cors());
 
-app.use('/', indexRouter);
+app.use('/', productsRouter);
 app.use('/users', usersRouter);
 app.use('/products', productsRouter);
 app.use('/cart', cartRouter);
@@ -44,10 +44,10 @@ app.use('/checkout', checkoutRouter);
 
 if (process.env.NODE_ENV === 'production') {
   // Set static folder
-  app.use(express.static('e_commerce/build'));
+  app.use(express.static('/build'));
 
   app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'e_commerce', 'build', 'index.html'));
+    res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
   });
 }
 
