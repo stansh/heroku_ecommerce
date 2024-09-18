@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
 const mongoose = require('mongoose');
-const url = 'mongodb://localhost:27017/e_commerce';
+const url = process.env.URL
 
 mongoose.connect(process.env.MONGODB_URL || url, {
     useCreateIndex: true,
