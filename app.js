@@ -22,24 +22,22 @@ var cartRouter = require('./routes/cart');
 var checkoutRouter = require('./routes/checkout');
 
 var app = express();
-const allowedOrigins = ['https://mernshop.azurewebsites.net/'];
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+
+app.set('port', process.env.PORT || 5000);
+console.log("++++++++++++++++" + app.get('port'));
 
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, '/build')));
-// app.use(cors());
-app.use(cors({
-  origin: allowedOrigins,
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true, // Enable cookies and authorization headers
-}));
+//app.use(express.static(path.join(__dirname, '/build')));
+app.use(express.static('./build'));
+app.use(cors());
 
 app.use('/', productsRouter);
 //app.use('/users', usersRouter);
