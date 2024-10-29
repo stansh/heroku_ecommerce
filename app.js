@@ -40,7 +40,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, './client/build')));
 //app.use(cors());
 app.use(cors({
-  origin: 'http://localhost:3000',  
+  origin: ['https://mernshop.azurewebsites.net','http://localhost:3000'],  
   methods: ['GET', 'POST', 'PUT', 'DELETE']  
 }));
 
