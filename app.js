@@ -37,7 +37,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'build')));
+//app.use(express.static(path.join(__dirname, 'build')));
 //app.use(cors());
 app.use(cors({
   origin: ['https://mernshop.azurewebsites.net','http://localhost:3000'],  
@@ -50,14 +50,14 @@ app.use('/products', productsRouter);
 app.use('/cart', cartRouter);
 app.use('/checkout', checkoutRouter);
 
-if (process.env.NODE_ENV === 'production') {
+// if (process.env.NODE_ENV === 'production') {
   // Set static folder
   //app.use(express.static('build'));
   app.use(express.static(path.join(__dirname, 'build')));
   app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname,'build','index.html'));
   });
-}
+// }
 
 
 // catch 404 and forward to error handler
