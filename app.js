@@ -19,7 +19,7 @@ mongoose.connect(process.env.MONGODB_URL, {
 
 
 
-//var indexRouter = require('./routes/index');
+var indexRouter = require('./routes/index');
 //var usersRouter = require('./routes/users');
 var productsRouter = require('./routes/products');
 var cartRouter = require('./routes/cart');
@@ -44,7 +44,7 @@ app.use(cors({
   methods: ['GET', 'POST', 'PUT', 'DELETE']  
 }));
 
-app.use('/', productsRouter);
+app.use('/', indexRouter);
 //app.use('/users', usersRouter);
 app.use('/products', productsRouter);
 app.use('/cart', cartRouter);
