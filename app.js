@@ -44,7 +44,7 @@ app.use(cors({
   methods: ['GET', 'POST', 'PUT', 'DELETE']  
 }));
 
-app.use('/', productsRouter);
+app.use('/', usersRouter);
 //app.use('/users', usersRouter);
 app.use('/products', productsRouter);
 app.use('/cart', cartRouter);
