@@ -6,8 +6,11 @@ const Currency = mongoose.Types.Currency;
 
 
 const cartItemSchema = new Schema({
-
-    
+   
+    userId:{
+        type:String,
+        required:false
+    },
     title: {
         type: String,
         required: false
